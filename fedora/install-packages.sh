@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+sudo dnf install --refresh \
+    alacritty \
+    chromium-freeworld \
+    conky \
+    dmenu \
+    emacs \
+    feh \
+    firefox \
+    flatpak \
+    fd-find \
+    git \
+    gnupg \
+    go \
+    htop \
+    hugo \
+    i3 \
+    i3status \
+    ImageMagick \
+    ipython3 \
+    magic-wormhole \
+    maim \
+    mosh \
+    nmap \
+    p7zip \
+    pavucontrol \
+    pcsc-lite \
+    pcsc-tools \
+    python3 \
+    restic \
+    ripgrep \
+    stow \
+    the_silver_searcher \
+    thunderbird \
+    vim \
+    wireshark \
+    zsh \

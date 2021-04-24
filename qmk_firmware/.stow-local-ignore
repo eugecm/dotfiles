@@ -1,0 +1,3 @@
+# Ignoring this package because it's not a one-off config file
+
+\.qmk
