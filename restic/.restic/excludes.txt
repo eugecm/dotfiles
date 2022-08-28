@@ -1,0 +1,4 @@
+.git
+virtualenv
+venv
+/home/z/src/go/
