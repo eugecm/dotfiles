@@ -17,7 +17,7 @@ mason_lspconfig.setup({
     -- "cssls",              -- LSP for CSS
     "pyright",            -- LSP for Python
     -- "volar",              -- LSP for Vue
-    "gopls",              -- LSP for Go
+    -- "gopls",              -- LSP for Go
     "rust_analyzer",      -- LSP for Rust
   }
 });
