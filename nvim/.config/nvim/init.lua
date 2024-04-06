@@ -353,6 +353,13 @@ require("lazy").setup({
 				--   },
 				-- },
 				-- pickers = {}
+				defaults = {
+					mappings = {
+						i = {
+							["jk"] = require("telescope.actions").close,
+						},
+					},
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
