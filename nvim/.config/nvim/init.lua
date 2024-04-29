@@ -171,6 +171,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -189,6 +190,9 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- The best remap ever
 vim.keymap.set("i", "jk", "<Esc>")
+
+-- Other remaps
+vim.keymap.set("n", "<Space><Tab>", "gt", { desc = "Change tab" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -409,7 +413,10 @@ require("lazy").setup({
 		end,
 	},
 
-	{ "github/copilot.vim" },
+	{ -- Copilot
+		"github/copilot.vim",
+		enabled = false,
+	},
 
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
@@ -630,6 +637,8 @@ require("lazy").setup({
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
+				html = { "prettier" },
+				javascript = { "prettier" },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
