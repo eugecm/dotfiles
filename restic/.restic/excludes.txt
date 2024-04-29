@@ -2,3 +2,7 @@
 virtualenv
 venv
 /home/z/src/go/
+/home/z/dev/*/target/**
+/home/z/dev/RustRover*/
+/home/z/dev/intellij/
+/home/z/dev/webui/
