@@ -568,6 +568,11 @@ require("lazy").setup({
 									"ansible",
 								},
 							},
+							cargo = {
+								buildScripts = {
+									enable = true,
+								},
+							},
 						},
 					},
 				},
