@@ -299,11 +299,17 @@ globalkeys = gears.table.join(
 
 	-- Layout manipulation
 	awful.key({ modkey, "Shift" }, "j", function()
-		awful.client.swap.byidx(1)
-	end, { description = "swap with next client by index", group = "client" }),
+		awful.client.swap.bydirection("down")
+	end, { description = "swap with client down", group = "layout" }),
 	awful.key({ modkey, "Shift" }, "k", function()
-		awful.client.swap.byidx(-1)
-	end, { description = "swap with previous client by index", group = "client" }),
+		awful.client.swap.bydirection("up")
+	end, { description = "swap with client up", group = "layout" }),
+	awful.key({ modkey, "Shift" }, "h", function()
+		awful.client.swap.bydirection("left")
+	end, { description = "swap with client to the left", group = "layout" }),
+	awful.key({ modkey, "Shift" }, "l", function()
+		awful.client.swap.bydirection("right")
+	end, { description = "swap with client to the right", group = "layout" }),
 	awful.key({ modkey, "Control" }, "j", function()
 		awful.screen.focus_relative(1)
 	end, { description = "focus the next screen", group = "screen" }),
@@ -325,12 +331,6 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
 
-	awful.key({ modkey, "Shift" }, "h", function()
-		awful.tag.incnmaster(1, nil, true)
-	end, { description = "increase the number of master clients", group = "layout" }),
-	awful.key({ modkey, "Shift" }, "l", function()
-		awful.tag.incnmaster(-1, nil, true)
-	end, { description = "decrease the number of master clients", group = "layout" }),
 	awful.key({ modkey, "Control" }, "h", function()
 		awful.tag.incncol(1, nil, true)
 	end, { description = "increase the number of columns", group = "layout" }),
