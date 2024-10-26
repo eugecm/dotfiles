@@ -194,6 +194,9 @@ vim.keymap.set("i", "jk", "<Esc>")
 -- Other remaps
 vim.keymap.set("n", "<Space><Tab>", "gt", { desc = "Change tab" })
 
+-- Colors
+vim.o.termguicolors = true
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -279,19 +282,19 @@ require("lazy").setup({
 
 	{ -- Useful plugin to show you pending keybinds.
 		"folke/which-key.nvim",
-		event = "VimEnter", -- Sets the loading event to 'VimEnter'
-		config = function() -- This is the function that runs, AFTER loading
-			require("which-key").setup()
-
-			-- Document existing key chains
-			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-			})
-		end,
+		event = "VeryLazy", -- Sets the loading event to 'VimEnter'
+		opts = {
+			icons = { mappings = false },
+		},
+		keys = {
+			{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
+			{ "<leader>d", group = "[D]ocument" },
+			{ "<leader>r", group = "[R]ename" },
+			{ "<leader>s", group = "[S]earch" },
+			{ "<leader>w", group = "[W]orkspace" },
+			{ "<leader>t", group = "[T]oggle" },
+			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+		},
 	},
 
 	-- NOTE: Plugins can specify dependencies.
@@ -792,7 +795,7 @@ require("lazy").setup({
 			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
+			-- require("mini.surround").setup()
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
@@ -856,6 +859,48 @@ require("lazy").setup({
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			local leap = require("leap")
+			leap.create_default_mappings()
+		end,
+	},
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local harpoon = require("harpoon")
+			vim.keymap.set("n", "<leader>a", function()
+				harpoon:list():add()
+			end)
+			vim.keymap.set("n", "<C-e>", function()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
+			end)
+
+			vim.keymap.set("n", "<C-h>", function()
+				harpoon:list():select(1)
+			end)
+			vim.keymap.set("n", "<C-t>", function()
+				harpoon:list():select(2)
+			end)
+			vim.keymap.set("n", "<C-n>", function()
+				harpoon:list():select(3)
+			end)
+			vim.keymap.set("n", "<C-s>", function()
+				harpoon:list():select(4)
+			end)
+
+			-- Toggle previous & next buffers stored within Harpoon list
+			vim.keymap.set("n", "<C-S-P>", function()
+				harpoon:list():prev()
+			end)
+			vim.keymap.set("n", "<C-S-N>", function()
+				harpoon:list():next()
+			end)
+		end,
+	},
 }, {
 	ui = {
 		-- If you have a Nerd Font, set icons to an empty table which will use the
