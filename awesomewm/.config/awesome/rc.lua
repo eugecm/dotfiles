@@ -413,10 +413,10 @@ clientkeys = gears.table.join(
 	end, { description = "(un)maximize horizontally", group = "client" }),
 	-- Media keys
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ '+2%'")
+		awful.spawn.with_shell("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+")
 	end),
 	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ '-2%'")
+		awful.spawn.with_shell("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-")
 	end),
 	awful.key({}, "XF86AudioPlay", function()
 		awful.spawn.with_shell("playerctl play-pause")
