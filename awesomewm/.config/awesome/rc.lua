@@ -21,6 +21,49 @@ require("awful.hotkeys_popup.keys")
 -- Load lain
 local lain = require("lain")
 
+local function isWideScreen()
+	local screen_width = awful.screen.focused().geometry.width
+	return screen_width > 2000
+end
+
+local function getLayouts()
+	if isWideScreen() then
+		return {
+			lain.layout.centerwork,
+			awful.layout.suit.floating,
+			awful.layout.suit.tile,
+			awful.layout.suit.tile.left,
+			awful.layout.suit.tile.bottom,
+			awful.layout.suit.tile.top,
+			awful.layout.suit.fair,
+			awful.layout.suit.fair.horizontal,
+			awful.layout.suit.spiral,
+			awful.layout.suit.spiral.dwindle,
+			awful.layout.suit.max,
+			awful.layout.suit.max.fullscreen,
+			awful.layout.suit.magnifier,
+			awful.layout.suit.corner.nw,
+		}
+	else
+		return {
+			awful.layout.suit.spiral,
+			awful.layout.suit.floating,
+			awful.layout.suit.tile,
+			awful.layout.suit.tile.left,
+			awful.layout.suit.tile.bottom,
+			awful.layout.suit.tile.top,
+			awful.layout.suit.fair,
+			awful.layout.suit.fair.horizontal,
+			awful.layout.suit.spiral,
+			awful.layout.suit.spiral.dwindle,
+			awful.layout.suit.max,
+			awful.layout.suit.max.fullscreen,
+			awful.layout.suit.magnifier,
+			awful.layout.suit.corner.nw,
+		}
+	end
+end
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -69,26 +112,7 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-	lain.layout.centerwork,
-	awful.layout.suit.floating,
-	awful.layout.suit.tile,
-	awful.layout.suit.tile.left,
-	awful.layout.suit.tile.bottom,
-	awful.layout.suit.tile.top,
-	awful.layout.suit.fair,
-	awful.layout.suit.fair.horizontal,
-	awful.layout.suit.spiral,
-	awful.layout.suit.spiral.dwindle,
-	awful.layout.suit.max,
-	awful.layout.suit.max.fullscreen,
-	awful.layout.suit.magnifier,
-	awful.layout.suit.corner.nw,
-	-- awful.layout.suit.corner.ne,
-	-- awful.layout.suit.corner.sw,
-	-- awful.layout.suit.corner.se,
-}
--- }}}
+awful.layout.layouts = getLayouts()
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
