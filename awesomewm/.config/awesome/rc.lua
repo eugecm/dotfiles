@@ -349,6 +349,9 @@ globalkeys = gears.table.join(
 	end, { description = "go back", group = "client" }),
 
 	-- Standard program
+	awful.key({ modkey }, "#", function()
+		awful.spawn("st-bc")
+	end, { description = "Open floating calculator", group = "launcher" }),
 	awful.key({ modkey }, "Return", function()
 		awful.spawn(terminal)
 	end, { description = "open a terminal", group = "launcher" }),
@@ -529,6 +532,16 @@ awful.rules.rules = {
 			buttons = clientbuttons,
 			screen = awful.screen.preferred,
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+		},
+	},
+
+	{
+		rule = { instance = "st" },
+		properties = {
+			floating = true,
+			ontop = true,
+			width = 400,
+			height = 300,
 		},
 	},
 
