@@ -572,6 +572,13 @@ awful.rules.rules = {
 		properties = { floating = true },
 	},
 
+	{
+		rule = { class = "Chromium-browser" },
+		properties = {
+			floating = false,
+		},
+	},
+
 	-- Add titlebars to normal clients and dialogs
 	{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = true } },
 
